@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link rel="stylesheet" th:href="@{/css/my.css}">
+    <link href="../../css/my.css" type="text/css" rel="stylesheet"/>
+    <style>
+    </style>
+
+</head>
+<body>
+<p th:text="'好哥哥'"></p>
+<div id="test">testcss</div>
+
+<tr th:each="product : ${product}">
+    <td th:text = "${product}"></td>
+</tr>
+
+<a href="findAll">test</a>
+
+
+
+</body>
+</html>

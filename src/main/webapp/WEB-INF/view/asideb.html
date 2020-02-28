@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 导航侧栏 -->
+<aside class="main-sidebar" th:fragment="asideb">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="/img/haitang.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>海棠</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+            </div>
+        </div>
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">菜单</li>
+
+            <li id="admin-index"><a href="/index/travel-index"><i class="fa fa-database"></i> <span>首页</span></a></li>
+
+            <!-- 菜单 -->
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-plane"></i> <span>一日游</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-file-text"></i> <span>三日游</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i> <span>七日游</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-get-pocket"></i> <span>全球游</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+            </li>
+
+        </ul>
+    </section>
+</aside>
+<!-- 导航侧栏 /-->
+
+</body>
+</html>

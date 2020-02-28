@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 导航侧栏 -->
+<aside class="main-sidebar" th:fragment="aside">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="/img/haitang.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>海棠</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+            </div>
+        </div>
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">菜单</li>
+
+            <li id="admin-index"><a href="/index/travel-index"><i class="fa fa-database"></i> <span>首页</span></a></li>
+
+            <!-- 菜单 -->
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-plane"></i> <span>旅游管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li id="admin-login">
+                        <a th:href="@{/product/findAll (page=1,size=8)}">
+                            <i class="fa fa-circle-o"></i> 项目列表
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-file-text"></i> <span>订单管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li id="order1">
+                        <a th:href="@{/order/findAll (page=1,size=8)}">
+                            <i class="fa fa-circle-o"></i> 订单列表
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i> <span>用户管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li id="charts-chartjs">
+                        <a th:href="@{/user/findAll (page=1,size=8)}">
+                            <i class="fa fa-circle-o"></i> 用户列表
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-gg-circle"></i> <span>角色管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li id="charts-chartjs1">
+                        <a th:href="@{/role/findAll (page=1,size=8)}">
+                            <i class="fa fa-circle-o"></i> 角色列表
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-get-pocket"></i> <span>资源管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li id="charts-chartjs2">
+                        <a th:href="@{/permission/findAll}">
+                            <i class="fa fa-circle-o"></i> 资源列表
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+        </ul>
+    </section>
+</aside>
+<!-- 导航侧栏 /-->
+
+</body>
+</html>

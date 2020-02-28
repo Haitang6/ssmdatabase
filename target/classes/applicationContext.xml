@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--    spring的配置文件-->
+
+    <!--开启注解扫描-->
+    <context:component-scan base-package="haitang">
+        <!--配置哪些注解不扫描,controller注解不扫描，annotation是注解的意思，要写controller的全路径，controller不需要spring注解-->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--整合mybatis-->
+    <!--配置连接池-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <!--        <property name="driverClass" value="com.mysql.jdbc.Driver"/>-->
+        <!--        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ssmdatabase"/>-->
+        <!--        <property name="user" value="root"/>-->
+        <!--        <property name="password" value="01200221"/>-->
+
+        <property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+        <property name="user" value="ssm"/>
+        <property name="password" value="111"/>
+    </bean>
+
+
+    <!--配置SqlSessionFactory工厂-->
+    <bean id="SqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- 指定mybatis映射文件的地址 xml文件形式 -->
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:haitang/dao/*.xml</value>
+            </list>
+        </property>
+
+        <!--分页配置-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <!--使用下面的方式配置参数，一行配置一个 -->
+                        <props>
+                            <prop key="helperDialect">oracle</prop>
+                            <prop key="reasonable">true</prop>
+                        </props>
+
+                    </property>
+                </bean>
+            </array>
+        </property>
+
+    </bean>
+
+    <!--配置ProductDao接口所在的包  mybatis 注解配置-->
+    <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="haitang.dao" />
+    </bean>
+
+    <!--配置spring框架声明式实物管理-->
+    <!--配置实物管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!--配置事务通知-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="*" isolation="DEFAULT"/>
+        </tx:attributes>
+    </tx:advice>
+    <!--配置Aop增强-->
+    <!--    <aop:config>-->
+    <!--        <aop:advisor advice-ref="txAdvice" pointcut="execution(* haitang.service.Impl.AccountServiceImpl.*(..))"/>-->
+    <!--    </aop:config>-->
+
+
+
+</beans>

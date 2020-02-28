@@ -1,0 +1,35 @@
+#test{
+    height: 100px;
+    width: 100px;
+    background-color: yellow;
+}
+.t{
+    height: 400px;
+    width: 400px;
+    background-color: #2e6da4;
+}
+.text-center a{
+    color: #4a4a4a;
+    /*font-family:华文行楷;*/
+}
+#register:before{
+    content: ' | ';
+}
+.myforget{
+    color: #ffae35;
+}
+.myforget:hover{
+    color: #ff8d0a;
+}
+.msea{
+    margin-bottom: 0px;!important;
+    min-height: 100px;!important;
+}
+.he{
+    height: 195px;
+}
+.fo{
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}

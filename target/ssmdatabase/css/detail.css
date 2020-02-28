@@ -1,0 +1,77 @@
+/*正文*/
+#center{
+    width: 80%;
+    height: 600px;
+    margin-top: 10px;
+}
+/*左边*/
+#left{
+    width: 300px;
+    padding: 30px 0;
+    float: left;
+    position: fixed;
+    background-color: white;
+    text-align: center;
+}
+#left_avatar {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+#left_pho{
+    height: 100px;
+    width: 100px;
+}
+
+#left ul li{
+    line-height: 40px;
+    height: 40px;
+    font-size: 20px;
+    font-family: 华文楷体, sans-serif;
+    font-weight: bold;
+}
+
+#help {
+    margin: 30px 0;
+}
+
+
+/*右边*/
+#right{
+    width:calc(100% - 310px);
+    margin-left: 310px;
+    background-color: white;
+    overflow: hidden;
+}
+#title h2{
+    text-align: center;
+    line-height: 60px;
+    height: 60px;
+    font-family: 华文楷体, sans-serif;
+}
+#title h6{
+    text-align: center;
+    color:darkgray;
+    margin-bottom: 20px;
+}
+#title{
+    border-bottom: 1px solid rgb(255, 134, 60);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+#message{
+    background-color: white;
+    line-height: 36px;
+    margin: 30px 20px;
+    text-indent: 2em;
+}
+#textarea:focus{
+    outline-color: #ffae35;
+}
+
+#textarea{
+    outline-color: #ffc624;
+    outline-style: solid;
+    outline-width: 2px;
+}
