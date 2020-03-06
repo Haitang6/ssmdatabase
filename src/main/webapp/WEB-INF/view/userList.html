@@ -179,43 +179,10 @@
 
 <script>
 
-    // 设置激活菜单
-    function setSidebarActive(tagUri) {
-        var liObj = $("#" + tagUri);
-        if (liObj.length > 0) {
-            liObj.parent().parent().addClass("active");
-            liObj.addClass("active");
-        }
-    }
-
     function changePagesize(){
         var pagesize=$("#pagesize").val();
         location.href="/user/findAll?page=1&size="+pagesize;
-
     }
-
-    $(document).ready(function (){
-
-        // 激活导航位置
-        setSidebarActive("order-cancel");
-
-        // 列表按钮
-        $("#dataList td input[type='checkbox']").iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            increaseArea: '20%'
-        });
-
-        $("#selall").click(function() {
-            var clicks = $(this).is(':checked');
-            if (!clicks) {
-                $("#dataList td input[type='checkbox']").iCheck("uncheck");
-            } else {
-                $("#dataList td input[type='checkbox']").iCheck("check");
-            }
-            $(this).data("clicks", !clicks);
-        });
-
-    });
 
 
 </script>
