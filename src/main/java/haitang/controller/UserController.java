@@ -1,6 +1,7 @@
 package haitang.controller;
 
 import com.github.pagehelper.PageInfo;
+import haitang.dao.UserDao;
 import haitang.domain.Product;
 import haitang.domain.Role;
 import haitang.domain.UserInfo;
@@ -11,6 +12,8 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Select;
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
@@ -28,6 +31,9 @@ public class UserController {
 
     @Autowired
     UserServer userServer;
+
+    @Autowired
+    UserDao userDao;
 
     @Autowired
     ProductService productService;
@@ -145,7 +151,7 @@ public class UserController {
     }
 
     @RequestMapping("/addTraveller")
-    public String addpermission (String productid,Model model){
+    public String addTraveller (String productid,Model model){
 
         model.addAttribute("productid",productid);
         return "travellerAdd";
@@ -153,29 +159,17 @@ public class UserController {
 
     @RequestMapping("/myself")
     public String myself( Model model){
-
-
-        UserInfo userInfo = userServer.findById("0120");
+        Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username=((User) user).getUsername();
+        UserInfo userInfo = userDao.findByusername(username);
         model.addAttribute("user",userInfo);
-
-        List<String> productids = userServer.findProductidByuserid();
-
+        List<String> productids = userServer.findProductidByuserid(userInfo.getId());
         List<Product> products=new ArrayList<Product>();
-
         for(String productid :productids){
             Product product = productService.findById(productid);
             products.add(product);
         }
         model.addAttribute("products",products);
-
         return "myself";
     }
-
-
-
-
-
-
-
-
 }

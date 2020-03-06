@@ -1,9 +1,7 @@
 package haitang.controller;
 
 import com.github.pagehelper.PageInfo;
-import haitang.dao.UserDao;
 import haitang.domain.Product;
-import haitang.domain.UserInfo;
 import haitang.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,11 +30,6 @@ public class IndexController {
         String ordertime= sdf.format(date);
         System.out.println(ordertime);
         return "index";
-    }
-
-    @RequestMapping("/test")
-    public String test(){
-        return "test";
     }
 
     @RequestMapping("/travel-index")

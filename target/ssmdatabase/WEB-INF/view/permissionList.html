@@ -94,7 +94,7 @@
                             </thead>
                             <tbody>
 
-                            <tr th:each="permission : ${permissions}">
+                            <tr th:each="permission : ${pageInfo.list}">
                                 <td><input name="ids" type="checkbox"></td>
                                 <td th:text = "${permission.id}"></td>
                                 <td th:text = "${permission.permissionName}"></td>
@@ -115,47 +115,8 @@
                 </div>
                 <!-- /.box-body -->
 
-                <!-- .box-footer-->
-                <div class="box-footer">
-                    <div class="pull-left">
-<!--                        <div class="form-group form-inline">-->
-<!--                            总共<span th:text="${pageInfo.pages}"></span> 页，共<span th:text="${pageInfo.total}"></span> 条数据。 每页-->
-<!--                            <select class="form-control" onchange="changePagesize()" id="pagesize">-->
-<!--                                <option style="display: none">6</option>-->
-<!--                                <option>1</option>-->
-<!--                                <option>3</option>-->
-<!--                                <option>6</option>-->
-<!--                                <option>9</option>-->
-<!--                            </select> 条-->
-<!--                        </div>-->
-                    </div>
-
-                    <div class="box-tools pull-right">
-<!--                        <ul class="pagination">-->
-<!--                            <li>-->
-<!--                                <a th:href="@{/permission/findAll (page=1,size=${pageInfo.pageSize})}" aria-label="Previous">首页</a>-->
-<!--                            </li>-->
-<!--                            <li><a th:href="@{/permission/findAll (page=${pageInfo.pageNum-1},size=${pageInfo.pageSize})}">上一页</a></li>-->
-
-<!--                            &lt;!&ndash;如果分页的页数大于5，就按照五条处理&ndash;&gt;-->
-<!--                            <tr th:each="i :${#numbers.sequence(1,5)}" th:if="${pageInfo.pages} GT 5">-->
-<!--                                <li><a th:href="@{/permission/findAll (page= ${i},size=${pageInfo.pageSize})}" th:text="${i}"></a></li>-->
-<!--                            </tr>-->
-
-<!--                            &lt;!&ndash;如果小于等于五条，就按照实际分的页数&ndash;&gt;-->
-<!--                            <tr th:each="i :${#numbers.sequence(1,pageInfo.pages)}" th:if="${pageInfo.pages} LE 5">-->
-<!--                                <li><a th:href="@{/permission/findAll (page= ${i},size=${pageInfo.pageSize})}" th:text="${i}"></a></li>-->
-<!--                            </tr>-->
-
-<!--                            <li><a th:href="@{/permission/findAll (page=${pageInfo.pageNum+1},size=${pageInfo.pageSize})}">下一页</a></li>-->
-<!--                            <li>-->
-<!--                                <a th:href="@{/permission/findAll (page=${pageInfo.pages},size=${pageInfo.pageSize})}" aria-label="Next">尾页</a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-                    </div>
-
-                </div>
-                <!-- /.box-footer-->
+                <!-- 分页-->
+                <div th:replace="pageInfo::pageInfo(permission)"></div>
             </div>
 
         </section>
@@ -171,46 +132,10 @@
 </div>
 
 <script>
-
-    // 设置激活菜单
-    function setSidebarActive(tagUri) {
-        var liObj = $("#" + tagUri);
-        if (liObj.length > 0) {
-            liObj.parent().parent().addClass("active");
-            liObj.addClass("active");
-        }
-    }
-
     function changePagesize(){
         var pagesize=$("#pagesize").val();
         location.href="/permission/findAll?page=1&size="+pagesize;
     }
-
-
-    $(document).ready(function (){
-
-        // 激活导航位置
-        setSidebarActive("order-cancel");
-
-        // 列表按钮
-        $("#dataList td input[type='checkbox']").iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            increaseArea: '20%'
-        });
-
-        $("#selall").click(function() {
-            var clicks = $(this).is(':checked');
-            if (!clicks) {
-                $("#dataList td input[type='checkbox']").iCheck("uncheck");
-            } else {
-                $("#dataList td input[type='checkbox']").iCheck("check");
-            }
-            $(this).data("clicks", !clicks);
-        });
-
-    });
-
-
 </script>
 
 </body>

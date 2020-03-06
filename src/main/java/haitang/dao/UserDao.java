@@ -51,6 +51,6 @@ public interface UserDao {
     @Insert("insert into users_role (userid,roleid ) values （#{userid}, #{roleid})")
     void addRoleToUser(@Param("userid") String userid,@Param("roleid") String roleid);
 
-    @Select("select productid from orders where userid='0120'")
-    List<String> findProductidByuserid ();
-}
+    @Select("select productid from orders where userid=#{userid}")
+    List<String> findProductidByuserid (@Param("userid") String userid);
+ }

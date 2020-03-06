@@ -26,7 +26,8 @@ public class OrderServiceImpl implements OrderServer {
     }
 
     @Override
-    public List<Orders> findAllByOrder(String order) {
+    public List<Orders> findAllByOrder(String order ,int page,int size) {
+        PageHelper.startPage(page,size);
         return orderDao.findAllByOrder(order);
     }
 
@@ -36,8 +37,8 @@ public class OrderServiceImpl implements OrderServer {
     }
 
     @Override
-    public void add(String id,String ordernum, Date ordertime, int peoplecount, String orderdesc, int paytype, int orderstatus, String productid) {
-        orderDao.add(id,ordernum,ordertime,peoplecount,orderdesc,paytype,orderstatus,productid);
+    public void add(String id,String ordernum, Date ordertime, int peoplecount, String orderdesc, int paytype, int orderstatus, String productid,String userid) {
+        orderDao.add(id,ordernum,ordertime,peoplecount,orderdesc,paytype,orderstatus,productid,userid);
 
     }
 

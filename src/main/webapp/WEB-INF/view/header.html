@@ -224,7 +224,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/img/haitang.jpg" class="user-image" alt="User Image">
-                        <span class="hidden-xs">海棠</span>
+                        <span class="hidden-xs" th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- user image -->
@@ -233,8 +233,8 @@
                                 <img src="/img/haitang.jpg" class="img-circle" alt="User Image" style="width: 50%;">
                             </a>
 
-                            <p>
-                                海棠- 数据管理员
+                            <p th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username}+'- 数据管理员'">
+
                                 <small>最后登录 11:20AM</small>
                             </p>
                         </li>

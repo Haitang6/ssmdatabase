@@ -117,47 +117,8 @@
                 </div>
                 <!-- /.box-body -->
 
-                <!-- .box-footer-->
-                <div class="box-footer">
-                    <div class="pull-left">
-                        <div class="form-group form-inline">
-                            总共<span th:text="${pageInfo.pages}"></span> 页，共<span th:text="${pageInfo.total}"></span> 条数据。 每页
-                            <select class="form-control" onchange="changePagesize()" id="pagesize">
-                                <option style="display: none">6</option>
-                                <option>1</option>
-                                <option>3</option>
-                                <option>6</option>
-                                <option>9</option>
-                            </select> 条
-                        </div>
-                    </div>
-
-                    <div class="box-tools pull-right">
-                        <ul class="pagination">
-                            <li>
-                                <a th:href="@{/product/findAll (page=1,size=${pageInfo.pageSize})}" aria-label="Previous">首页</a>
-                            </li>
-                            <li><a th:href="@{/product/findAll (page=${pageInfo.pageNum-1},size=${pageInfo.pageSize})}">上一页</a></li>
-
-                            <!--如果分页的页数大于5，就按照五条处理-->
-                            <tr th:each="i :${#numbers.sequence(1,5)}" th:if="${pageInfo.pages} GT 5">
-                                <li><a th:href="@{/product/findAll (page= ${i},size=${pageInfo.pageSize})}" th:text="${i}"></a></li>
-                            </tr>
-
-                            <!--如果小于等于五条，就按照实际分的页数-->
-                            <tr th:each="i :${#numbers.sequence(1,pageInfo.pages)}" th:if="${pageInfo.pages} LE 5">
-                                <li><a th:href="@{/product/findAll (page= ${i},size=${pageInfo.pageSize})}" th:text="${i}"></a></li>
-                            </tr>
-
-                            <li><a th:href="@{/product/findAll (page=${pageInfo.pageNum+1},size=${pageInfo.pageSize})}">下一页</a></li>
-                            <li>
-                                <a th:href="@{/product/findAll (page=${pageInfo.pages},size=${pageInfo.pageSize})}" aria-label="Next">尾页</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /.box-footer-->
+                <!-- 分页-->
+                <div th:replace="pageInfo::pageInfo(product)"></div>
             </div>
 
         </section>

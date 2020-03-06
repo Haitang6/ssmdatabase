@@ -1,5 +1,7 @@
 package haitang.service.Impl;
 
+import com.github.pagehelper.PageHelper;
+import com.sun.glass.ui.Size;
 import haitang.dao.PermissionDao;
 import haitang.domain.Permission;
 import haitang.service.PermissionServer;
@@ -14,8 +16,9 @@ public class PermissionServiceImpl implements PermissionServer {
     PermissionDao permissionDao;
 
     @Override
-    public List<Permission> findAll() {
+    public List<Permission> findAll(int page ,int size) {
 
+        PageHelper.startPage(page, size);
         return permissionDao.findAll();
     }
 }

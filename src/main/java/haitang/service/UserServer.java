@@ -30,7 +30,7 @@ public interface UserServer extends UserDetailsService {
 
     void addRoleToUser(String userid,String[] roleidlist);
 
-    List<String> findProductidByuserid();
+    List<String> findProductidByuserid(String userid);
 
 
 

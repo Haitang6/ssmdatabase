@@ -109,9 +109,9 @@ public class UserServerImpl implements UserServer {
     }
 
     @Override
-    public List<String> findProductidByuserid() {
+    public List<String> findProductidByuserid(String userid) {
 
-        return userDao.findProductidByuserid();
+        return userDao.findProductidByuserid(userid);
     }
 
 

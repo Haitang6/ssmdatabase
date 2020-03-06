@@ -4,12 +4,16 @@ import com.github.pagehelper.PageInfo;
 import haitang.domain.Product;
 import haitang.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -25,8 +29,8 @@ public class ProductController {
 
     //查询所有，完成旅游的表单显示页面
     @RequestMapping("/findAll")
-    public String findAll(Model model,@RequestParam(name = "page",required = true,defaultValue = "1") int page ,
-                          @RequestParam(name = "size",required = true,defaultValue = "6") int size){
+    public String findAll(Model model,@RequestParam(name = "page",defaultValue = "1") int page ,
+                          @RequestParam(name = "size",defaultValue = "6") int size){
         List<Product> products = productService.findAll(page,size);
         PageInfo pageInfo = new PageInfo(products);
         model.addAttribute("pageInfo",pageInfo);
@@ -35,8 +39,8 @@ public class ProductController {
 
     //根据条件，排序
     @RequestMapping("/findAllByOrder")
-    public String findAllByOrder(Model model,String order,@RequestParam(name = "page",required = true,defaultValue = "1") int page ,
-                                 @RequestParam(name = "size",required = true,defaultValue = "1") int size){
+    public String findAllByOrder(Model model,String order,@RequestParam(name = "page" ,defaultValue = "1") int page ,
+                                 @RequestParam(name = "size", defaultValue = "1") int size){
         List<Product> products = productService.findAllByOrder(order,page,size);
         PageInfo pageInfo = new PageInfo(products);
         model.addAttribute("pageInfo",pageInfo);

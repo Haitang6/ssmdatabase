@@ -82,12 +82,12 @@
                                 <th class="" style="padding-right:0px;">
                                     <input id="selall" type="checkbox" class="icheckbox_square-blue">
                                 </th>
-                                <th class="text-center"><a th:href="@{/order/findAllByOrder (order = 'id')}">ID</a></th>
-                                <th class="text-center"><a th:href="@{/order/findAllByOrder (order = 'ordernum')}">订单编号</a></th>
-                                <th class="text-center"><a th:href="@{/order/findAllByOrder (order = 'productid')}">产品名称</a></th>
-                                <th class="text-center"><a th:href="@{/order/findAllByOrder (order = 'ordernum')}">金额</a></th>
-                                <th class="text-center"><a th:href="@{/order/findAllByOrder (order = 'orderTime desc')}"> 下单时间</a></th>
-                                <th class="text-center"><a th:href="@{/order/findAllByOrder (order = 'orderStatus desc')}">订单状态</a></th>
+                                <th class="text-center"><a th:href="@{/order/findAllByOrder (order = 'id',page='1',size='7')}">ID</a></th>
+                                <th class="text-center"><a th:href="@{/order/findAllByOrder (order = 'ordernum',page='1',size='7')}">订单编号</a></th>
+                                <th class="text-center"><a th:href="@{/order/findAllByOrder (order = 'productid',page='1',size='7')}">产品名称</a></th>
+                                <th class="text-center"><a th:href="@{/order/findAllByOrder (order = 'ordernum',page='1',size='7')}">金额</a></th>
+                                <th class="text-center"><a th:href="@{/order/findAllByOrder (order = 'orderTime desc',page='1',size='7')}"> 下单时间</a></th>
+                                <th class="text-center"><a th:href="@{/order/findAllByOrder (order = 'orderStatus desc',page='1',size='7')}">订单状态</a></th>
                                 <th class="text-center"><a >编辑</a></th>
                             </tr>
                             </thead>
@@ -115,58 +115,12 @@
                     <!-- 数据表格 /-->
                 </div>
                 <!-- /.box-body -->
-
-                <!-- .box-footer-->
-                <div class="box-footer">
-                    <div class="pull-left">
-                        <div class="form-group form-inline">
-                            总共<span th:text="${pageInfo.pages}"></span> 页，共<span th:text="${pageInfo.total}"></span> 条数据。 每页
-                            <select class="form-control" onchange="changePagesize()" id="pagesize">
-                                <option style="display: none">6</option>
-                                <option>1</option>
-                                <option>3</option>
-                                <option>6</option>
-                                <option>9</option>
-                            </select> 条
-                        </div>
-                    </div>
-
-                    <div class="box-tools pull-right">
-                        <ul class="pagination">
-                            <ul class="pagination">
-                                <li>
-                                    <a th:href="@{/order/findAll (page=1,size=${pageInfo.pageSize})}" aria-label="Previous">首页</a>
-                                </li>
-                                <li><a th:href="@{/order/findAll (page=${pageInfo.pageNum-1},size=${pageInfo.pageSize})}">上一页</a></li>
-
-                                <!--如果分页的页数大于5，就按照五条处理-->
-                                <tr th:each="i :${#numbers.sequence(1,5)}" th:if="${pageInfo.pages} GT 5">
-                                    <li><a th:href="@{/order/findAll (page= ${i},size=${pageInfo.pageSize})}" th:text="${i}"></a></li>
-                                </tr>
-
-                                <!--如果小于等于五条，就按照实际分的页数-->
-                                <tr th:each="i :${#numbers.sequence(1,pageInfo.pages)}" th:if="${pageInfo.pages} LE 5">
-                                    <li><a th:href="@{/order/findAll (page= ${i},size=${pageInfo.pageSize})}" th:text="${i}"></a></li>
-                                </tr>
-
-                                <li><a th:href="@{/order/findAll (page=${pageInfo.pageNum+1},size=${pageInfo.pageSize})}">下一页</a></li>
-                                <li>
-                                    <a th:href="@{/order/findAll (page=${pageInfo.pages},size=${pageInfo.pageSize})}" aria-label="Next">尾页</a>
-                                </li>
-                            </ul>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /.box-footer-->
-
-
+                <!-- 分页-->
+                <div th:replace="pageInfo::pageInfo('order')"></div>
 
             </div>
-
         </section>
         <!-- 正文区域 /-->
-
     </div>
     <!-- 内容区域 /-->
 
@@ -177,45 +131,11 @@
 </div>
 
 <script>
-
-
     function changePagesize(){
         var pagesize=$("#pagesize").val();
         location.href="/order/findAll?page=1&size="+pagesize;
     }
-
-    // 设置激活菜单
-    function setSidebarActive(tagUri) {
-        var liObj = $("#" + tagUri);
-        if (liObj.length > 0) {
-            liObj.parent().parent().addClass("active");
-            liObj.addClass("active");
-        }
-    }
-
-    $(document).ready(function (){
-
-        // 激活导航位置
-        setSidebarActive("order-cancel");
-
-        // 列表按钮
-        $("#dataList td input[type='checkbox']").iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            increaseArea: '20%'
-        });
-
-        $("#selall").click(function() {
-            var clicks = $(this).is(':checked');
-            if (!clicks) {
-                $("#dataList td input[type='checkbox']").iCheck("uncheck");
-            } else {
-                $("#dataList td input[type='checkbox']").iCheck("check");
-            }
-            $(this).data("clicks", !clicks);
-        });
-
-    });
-</script>
+ </script>
 
 </body>
 

@@ -56,17 +56,4 @@
     <!-- 配置加密类 -->
     <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
- </beans>   
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+ </beans>

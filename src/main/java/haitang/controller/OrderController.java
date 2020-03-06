@@ -2,9 +2,13 @@ package haitang.controller;
 
 import com.github.pagehelper.PageInfo;
 import haitang.dao.OrderDao;
+import haitang.dao.UserDao;
 import haitang.domain.Orders;
+import haitang.domain.UserInfo;
 import haitang.service.OrderServer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +24,8 @@ import java.util.UUID;
 public class OrderController {
     @Autowired
     OrderServer orderServer;
+    @Autowired
+    UserDao userDao;
 
     @RequestMapping("/findAll")
     public String findAll(Model model,
@@ -32,9 +38,12 @@ public class OrderController {
     }
 
     @RequestMapping("/findAllByOrder")
-    public String findAllByOrder(Model model,String order){
-        List<Orders> orders = orderServer.findAllByOrder(order);
-        model.addAttribute("orderList",orders);
+    public String findAllByOrder(Model model,String order,
+                                 @RequestParam(name = "page") int page,
+                                 @RequestParam(name = "size") int size){
+        List<Orders> orders = orderServer.findAllByOrder(order,page,size);
+        PageInfo pageInfo=new PageInfo(orders);
+        model.addAttribute("pageInfo",pageInfo);
         return "orderList";
     }
 
@@ -50,16 +59,19 @@ public class OrderController {
 
         String id=UUID.randomUUID().toString();
         String ordernum=UUID.randomUUID().toString();
-
         Date ordertime = new Date();// 获取当前时间
         int  peoplecount=traveller.length;
         String orderdesc=orders.getOrderDesc();
         int  paytype=orders.getPayType();
         int orderstatus=1;
-        orderServer.add(id,ordernum, ordertime,peoplecount,orderdesc,paytype,orderstatus,productid);
+
+        Object user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username=((User) user).getUsername();
+        UserInfo userInfo = userDao.findByusername(username);
+
+        orderServer.add(id,ordernum, ordertime,peoplecount,orderdesc,paytype,orderstatus,productid,userInfo.getId());
 
         for (String traverllerid:traveller){
-            System.out.println(traverllerid);
             orderServer.addtraveller(id,traverllerid);
         }
 

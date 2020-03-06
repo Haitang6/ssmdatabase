@@ -15,7 +15,7 @@
                 <img src="/img/haitang.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>海棠</p>
+                <p th:text="${session.SPRING_SECURITY_CONTEXT.authentication.principal.username}"></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
             </div>
         </div>

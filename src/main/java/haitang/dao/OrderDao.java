@@ -37,8 +37,8 @@ public interface OrderDao {
     Orders findById( @Param("id") String id);
 
     @Insert("insert into orders (id,ordernum,ordertime,peoplecount,orderdesc,paytype,orderstatus,productid,memberid,userid) " +
-            "values (#{id},#{ordernum},#{ordertime},#{peoplecount},#{orderdesc},#{paytype},#{orderstatus},#{productid},'E61D65F673D54F68B0861025C69773DB','0120')")
-    void add(@Param("id")String id,@Param("ordernum") String ordernum, @Param("ordertime") Date ordertime, @Param("peoplecount") int peoplecount, @Param("orderdesc") String orderdesc, @Param("paytype") int paytype, @Param("orderstatus") int orderstatus, @Param("productid") String productid);
+            "values (#{id},#{ordernum},#{ordertime},#{peoplecount},#{orderdesc},#{paytype},#{orderstatus},#{productid},'E61D65F673D54F68B0861025C69773DB',#{userid})")
+    void add(@Param("id")String id,@Param("ordernum") String ordernum, @Param("ordertime") Date ordertime, @Param("peoplecount") int peoplecount, @Param("orderdesc") String orderdesc, @Param("paytype") int paytype, @Param("orderstatus") int orderstatus, @Param("productid") String productid,@Param("userid") String userid);
 
 
     @Insert("insert into order_traveller (orderid,travellerid) values (#{orderid},#{travellerid})")

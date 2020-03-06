@@ -10,8 +10,8 @@ import java.util.List;
 public interface OrderServer {
 
     List <Orders> findAll(int page,int size);
-    List <Orders> findAllByOrder(String order);
+    List <Orders> findAllByOrder(String order,int page,int size);
     Orders findById (String id);
-    void add(String id,String ordernum, Date ordertime, int peoplecount, String orderdesc, int paytype, int orderstatus, String productid);
+    void add(String id,String ordernum, Date ordertime, int peoplecount, String orderdesc, int paytype, int orderstatus, String productid,String userid);
     void addtraveller(String orderid,String travellerid);
 }
