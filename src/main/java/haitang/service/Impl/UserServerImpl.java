@@ -32,7 +32,7 @@ public class UserServerImpl implements UserServer {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserInfo userInfo =userDao.findByusername(username);
 //        User user = new User(userInfo.getUsername(), "{noop}"+userInfo.getPassword(), getAuthority(userInfo.getRoles()));
-        User user = new User(userInfo.getUsername(), userInfo.getPassword(), getAuthorityy());
+        User user = new User(userInfo.getUsername(), userInfo.getPassword(), getAuthority(userInfo.getRoles()));
         return user;
     }
 
@@ -41,12 +41,6 @@ public class UserServerImpl implements UserServer {
         for(Role role:roles) {
             list.add(new SimpleGrantedAuthority(role.getRoleName()));
         }
-        return list;
-    };
-
-    public List<SimpleGrantedAuthority> getAuthorityy() {
-        List<SimpleGrantedAuthority> list = new ArrayList<>();
-        list.add(new SimpleGrantedAuthority("ROLE_USER"));
         return list;
     }
 

@@ -4,6 +4,7 @@
 <head>
     <title>旅游订单详情</title>
     <head th:replace="import::head"></head>
+    <script src="../../js/comment.js"></script>
 </head>
 
 <body class="hold-transition skin-yellow sidebar-mini">
@@ -12,11 +13,9 @@
 
     <!-- 页面头部 -->
     <div th:replace="header::header"></div>
-    <!-- 页面头部 /-->
 
     <!-- 导航侧栏 -->
     <div th:replace="aside::aside"></div>
-    <!-- 导航侧栏 /-->
 
     <!-- 内容区域-->
     <div class="content-wrapper">
@@ -117,14 +116,14 @@
             </section>
             <!-- 正文区域 /-->
         </form>
-        <!-- 正文区域 /-->
+
     </div>
     <!-- 内容区域/-->
 
 
     <!--底部导航-->
     <div th:replace="footer::footer"></div>
-    <!-- 底部导航 /-->
+
 </div>
 <script>
     $(document).ready(function () {

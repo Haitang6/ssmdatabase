@@ -50,7 +50,7 @@
     <mvc:resources location="/plugins/" mapping="/WEN-INF/plugins/**"/>
 
     <!--支持springmvc注解-->
-    <mvc:annotation-driven></mvc:annotation-driven>
+    <mvc:annotation-driven />
 
     <mvc:default-servlet-handler/>
 </beans>

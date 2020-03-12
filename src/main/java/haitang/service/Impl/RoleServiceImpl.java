@@ -15,18 +15,14 @@ public class RoleServiceImpl implements RoleServer {
     @Autowired
     RoleDao roleDao;
 
-
     @Override
     public List<Role> findAll(int page ,int size) {
-
         PageHelper.startPage(page,size);
         return roleDao.findAll();
     }
 
     @Override
     public Role findById(String id) {
-
-
         return roleDao.findById(id);
     }
 }

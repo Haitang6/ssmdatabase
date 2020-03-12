@@ -143,16 +143,13 @@ public class UserController {
     @RequestMapping("/addRoleToUser")
     public String addRoleToUser(@RequestParam(name = "userid" ,required = true) String userid ,
                                 @RequestParam(name = "roleidlist",required = true) String[] roleidlist){
-
         System.out.println(roleidlist);
         userServer.addRoleToUser(userid , roleidlist);
-
         return "redirect:/user/findAll";
     }
 
     @RequestMapping("/addTraveller")
     public String addTraveller (String productid,Model model){
-
         model.addAttribute("productid",productid);
         return "travellerAdd";
     }

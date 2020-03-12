@@ -13,6 +13,15 @@ public class UserInfo {
     private String statusStr;
     private List<Role> roles;
 
+     public void setStatus(int status) {
+        if (status == 0){
+            statusStr = "普通用户";
+        }else {
+            statusStr = "VIP";
+        }
+        this.status = status;
+    }
+
     public String getId() {
         return id;
     }
@@ -57,24 +66,11 @@ public class UserInfo {
         return status;
     }
 
-    public void setStatus(int status) {
-
-        if (status == 0){
-            statusStr = "普通用户";
-        }else {
-            statusStr = "VIP";
-        }
-
-
-        this.status = status;
-    }
-
     public String getStatusStr() {
         return statusStr;
     }
 
     public void setStatusStr(String statusStr) {
-
         this.statusStr = statusStr;
     }
 
@@ -84,19 +80,5 @@ public class UserInfo {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
-    }
-
-    @Override
-    public String toString() {
-        return "UserInfo{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", phoneNum='" + phoneNum + '\'' +
-                ", status=" + status +
-                ", statusStr='" + statusStr + '\'' +
-                ", roles=" + roles +
-                '}';
     }
 }

@@ -1,19 +1,16 @@
 package haitang.controller;
 
 import com.github.pagehelper.PageInfo;
+import haitang.domain.Comment;
 import haitang.domain.Product;
+import haitang.service.CommentService;
 import haitang.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
-
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -21,6 +18,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
+
+    @Autowired
+    public CommentService commentService;
 
     @Autowired
     private ProductService productService;
@@ -59,6 +59,11 @@ public class ProductController {
     public String findByIdtravel(String pid,Model model){
         Product product = productService.findById(pid);
         model.addAttribute("product",product);
+
+        List<Comment> comments = commentService.findByParentId(pid);
+        System.out.println(comments);
+        model.addAttribute("comments",comments);
+
         return "travelDetail";
     }
 

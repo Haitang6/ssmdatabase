@@ -31,7 +31,7 @@ body {
 #comment textarea{
     width: 100%;
     font-size: 16px;
-    border: 1px solid mediumpurple;
+    border: 1px solid #ff863c;
     border-radius: 10px;
     padding: 5px;
 }

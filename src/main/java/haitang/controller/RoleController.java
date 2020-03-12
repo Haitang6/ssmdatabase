@@ -29,7 +29,6 @@ public class RoleController {
 
     @RequestMapping("/findById")
     public String findById (Model model,String id){
-
         Role role = roleServer.findById(id);
         model.addAttribute("role",role);
         return "roleDetail";
