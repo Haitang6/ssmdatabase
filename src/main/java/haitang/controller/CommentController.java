@@ -1,6 +1,7 @@
 package haitang.controller;
 
 
+import haitang.dao.CommentDao;
 import haitang.dao.UserDao;
 import haitang.domain.Comment;
 import haitang.domain.UserInfo;
@@ -26,6 +27,9 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
+    @Autowired
+    CommentDao commentDao;
+
     @ResponseBody
     @RequestMapping("/comment")
     public ResultDto comment(@RequestBody CommentDto commentDto, HttpServletRequest request){
@@ -40,6 +44,7 @@ public class CommentController {
         comment.setType(commentDto.getType());
         comment.setReplayCount(0);
         commentService.add(comment);
+        commentDao.setReplyCount(comment.getParentId());
         return ResultDto.success();
     }
 

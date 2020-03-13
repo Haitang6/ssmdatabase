@@ -60,7 +60,10 @@ public class ProductController {
         Product product = productService.findById(pid);
         model.addAttribute("product",product);
         List<Comment> comments = commentService.findByParentId(pid);
+
+        int count = comments.size();
         model.addAttribute("comments",comments);
+        model.addAttribute("count",count);
         return "travelDetail";
     }
 
