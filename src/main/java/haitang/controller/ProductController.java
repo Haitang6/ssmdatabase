@@ -59,11 +59,8 @@ public class ProductController {
     public String findByIdtravel(String pid,Model model){
         Product product = productService.findById(pid);
         model.addAttribute("product",product);
-
         List<Comment> comments = commentService.findByParentId(pid);
-        System.out.println(comments);
         model.addAttribute("comments",comments);
-
         return "travelDetail";
     }
 

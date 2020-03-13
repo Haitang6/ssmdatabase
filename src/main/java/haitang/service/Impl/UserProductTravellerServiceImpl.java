@@ -12,9 +12,7 @@ public class UserProductTravellerServiceImpl implements UserProductTravellerServ
     UserProductTravellerDao userProductTravellerDao;
 
     @Override
-    public void add(String productid, String travellerid) {
-        System.out.println(productid);
-        System.out.println(travellerid);
-        userProductTravellerDao.add(productid,travellerid);
+    public void add(String userid,String productid, String travellerid) {
+        userProductTravellerDao.add(userid,productid,travellerid);
     }
 }

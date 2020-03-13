@@ -12,11 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class CommentController {
@@ -30,13 +29,9 @@ public class CommentController {
     @ResponseBody
     @RequestMapping("/comment")
     public ResultDto comment(@RequestBody CommentDto commentDto, HttpServletRequest request){
-
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
-
         UserInfo userInfo = userDao.findByusername(name);
-
         Comment comment=new Comment();
         comment.setCommentator(userInfo.getId());
         comment.setContext(commentDto.getContext());
@@ -46,5 +41,12 @@ public class CommentController {
         comment.setReplayCount(0);
         commentService.add(comment);
         return ResultDto.success();
+    }
+
+    @ResponseBody
+    @GetMapping("/comment/{id}")
+    public Object showDoubleComment(@PathVariable(name="id") String id){
+        List<Comment> comments = commentService.findByParentId(id);
+        return ResultDto.successWithData(comments);
     }
 }

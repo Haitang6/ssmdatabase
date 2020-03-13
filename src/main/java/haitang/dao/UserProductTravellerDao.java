@@ -9,6 +9,6 @@ import javax.naming.Name;
 @Repository
 public interface UserProductTravellerDao {
 
-    @Insert("insert into users_product_traveller values ('0120',#{productid},#{travellerid})")
-    void add(@Param("productid") String productid, @Param("travellerid") String travellerid);
+    @Insert("insert into users_product_traveller values (#{userid},#{productid},#{travellerid})")
+    void add(@Param("userid")String userid,@Param("productid") String productid, @Param("travellerid") String travellerid);
 }
