@@ -15,7 +15,7 @@ public interface CommentDao {
             "values (#{context},#{type},#{parentId},#{replayCount},#{commentator},#{gmtCreate})")
     void add(Comment comment);
 
-    @Select("select * from COMMENTAA where parent_id = #{parentId} order")
+    @Select("select * from COMMENTAA where parent_id = #{parentId} order by gmtCreate desc ")
     List<Comment> selectComment(String parentId);
 
     @Update("update COMMENTAA set replayCount = replayCount + 1 where id = #{id} ")

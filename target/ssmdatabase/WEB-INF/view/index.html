@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-    <title>旅游管理首页</title>
+    <title sec:authentication="name"></title>
+
+<!--    <title>旅游管理首页</title>-->
     <head th:replace="import::head">
 </head>
 <body class="hold-transition skin-yellow sidebar-mini">

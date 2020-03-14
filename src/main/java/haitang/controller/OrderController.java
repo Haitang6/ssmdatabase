@@ -7,6 +7,7 @@ import haitang.domain.Orders;
 import haitang.domain.UserInfo;
 import haitang.service.OrderServer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ public class OrderController {
     @Autowired
     UserDao userDao;
 
+    @PreAuthorize("hasRole('ROLE_USER')")
     @RequestMapping("/findAll")
     public String findAll(Model model,
                           @RequestParam(name = "page" , defaultValue = "1",required = true) int page,

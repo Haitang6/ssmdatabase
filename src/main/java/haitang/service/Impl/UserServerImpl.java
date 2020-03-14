@@ -48,7 +48,7 @@ public class UserServerImpl implements UserServer {
     public void register(UserInfo userInfo) {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
         userDao.register(userInfo);
-    }
+}
 
     @Override
     public List<UserInfo> findAll(int page,int size) {

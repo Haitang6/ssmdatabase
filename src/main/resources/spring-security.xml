@@ -7,6 +7,8 @@
     http://www.springframework.org/schema/security
     http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <security:global-method-security pre-post-annotations="enabled"  proxy-target-class="true"/>
+
     <!-- 不登录也能访问的页面 -->
     <security:http pattern="/login.html" security="none"/>
     <security:http pattern="/failer.html" security="none"/>
@@ -24,11 +26,10 @@
 
     <!-- auto-config="true"	不用自己编写登录的页面，框架提供默认登录页面
     	use-expressions="false"	是否使用SPEL表达式-->
-    <security:http auto-config="true" use-expressions="true">
+    <security:http auto-config="true" use-expressions="false">
     <!-- 配置具体的拦截的规则 pattern="请求路径的规则" access="访问系统的人，必须有ROLE_USER的角色" -->
-        <security:intercept-url pattern="/**" access="hasAnyRole('ROLE_USER,ROLE_ADMIN')"/>
-<!--        <security:intercept-url pattern="/user/**" access="ROLE_USER,ROLE_ADMIN"/>-->
-<!--     <security:intercept-url pattern="/index/travel-index" access="ROLE_USER"/>-->
+
+    <security:intercept-url pattern="/**" access="ROLE_ADMIN"/>
 
     <!-- 定义跳转的具体的页面 -->
     <security:form-login

@@ -19,7 +19,6 @@ public class IndexController {
     @Autowired
     ProductService productService;
 
-
     @RequestMapping
     public String toIndex() {
 

@@ -6,11 +6,14 @@ import haitang.domain.Product;
 import haitang.service.CommentService;
 import haitang.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -29,6 +32,7 @@ public class ProductController {
 
     //查询所有，完成旅游的表单显示页面
     @RequestMapping("/findAll")
+    @PreAuthorize("authentication.principal.username == 'linker'")
     public String findAll(Model model,@RequestParam(name = "page",defaultValue = "1") int page ,
                           @RequestParam(name = "size",defaultValue = "6") int size){
         List<Product> products = productService.findAll(page,size);
